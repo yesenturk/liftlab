@@ -1,0 +1,55 @@
+﻿@model IEnumerable<liftmarket.Models.Urun>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>
+    @Html.ActionLink("Sepete Git", "Basket")
+</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Ürün Adı
+        </th>
+        <th>
+            Bayi Fiyatı
+        </th>
+        <th>
+            Müşteri Fiyatı
+        </th>
+        <th>
+            Üretim Süresi
+        </th>
+        <th>
+            Bakım Süresi
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrunAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BayiFiyati) ₺
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MusteriFiyati) ₺
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UretimSure) gün
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BakimSure) günde bir
+        </td>
+        <td>
+            @Html.ActionLink("Sepete Ekle", "AddToBasket", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

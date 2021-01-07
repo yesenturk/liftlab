@@ -1,0 +1,71 @@
+﻿@model IEnumerable<liftmarket.Models.Urun>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2> </h2>
+
+<p>
+    @Html.ActionLink("Ürün Ekle", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UrunAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BayiFiyati)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MusteriFiyati)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BakimFiyati)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UretimSure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BakimSure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KarDurumu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrunAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BayiFiyati) ₺
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MusteriFiyati) ₺
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BakimFiyati) ₺
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UretimSure) gün
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BakimSure) günde bir
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KarDurumu) %
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+            @Html.ActionLink("Sil", "Delete", new { id = item.Id })
+            @*@Html.ActionLink("Onayla", "Onayla", new { id = item.Id })*@
+
+        </td>
+    </tr>
+}
+
+</table>

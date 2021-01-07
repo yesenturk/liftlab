@@ -1,0 +1,78 @@
+﻿@model liftmarket.Models.Urun
+
+@{
+    ViewBag.Title = "Ürünü Sil";
+}
+
+
+<h3>Ürünü silmek istediğinize emin misiniz?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="width:225px;">
+            <p class="control-label col-md-4">Ürün Adı</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunAdi)
+        </dd>
+
+        <dt style="width:225px;">
+            <p class="control-label col-md-4">Bayi Satış Fiyatı</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BayiFiyati) ₺
+        </dd>
+
+        <dt style="width:225px;">
+            <p class="control-label col-md-4">Müşteri Satış Fiyatı</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MusteriFiyati) ₺
+        </dd>
+
+        <dt style="width:225px;">
+            <p class="control-label col-md-4">Bakım Ücreti</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BakimFiyati) ₺
+        </dd>
+
+        <dt style="width:225px;">
+            <p class="control-label col-md-4">Üretim Süresi (Gün)</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UretimSure)
+        </dd>
+
+        <dt style="width:225px;">
+            <p class="control-label col-md-4">Bakım Zaman Aralığı (Gün)</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BakimSure)
+        </dd>
+
+        <dt style="width:225px;">
+            <p class="control-label col-md-3">Kar %</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KarDurumu) %
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            @Html.ActionLink("Geri", "Index")
+        </div>
+    }
+</div>

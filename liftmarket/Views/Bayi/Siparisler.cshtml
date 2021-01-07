@@ -1,0 +1,118 @@
+﻿@model IEnumerable<liftmarket.Models.SiparisDetay>
+
+@{
+    ViewBag.Title = "Siparişler";
+}
+
+<h2 style="margin:15px; 0px;">
+    Siparişler
+</h2>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            Sipariş No
+        </th>
+        <th>
+            Adet
+        </th>
+        <th>
+            ToplamTutar
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiparisNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToplamTutar) ₺
+            </td>
+            <td>
+                @Html.ActionLink("Sipariş Detayı", "OrderDetail", new { SiparisNo = item.SiparisNo })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+@*<table class="table">
+        <tr>
+            <th>
+                Sipariş No
+            </th>
+            <th>
+                Ürün Adı
+            </th>
+            <th>
+                Sipariş Tarihi
+            </th>
+            <th>
+                Adet
+            </th>
+            <th>
+                Son Bakım Tarihi
+            </th>
+            <th>
+                Sonraki Bakım Tarihi
+            </th>
+            <th>
+                Bakım Masrafı
+            </th>
+            <th>
+                Bakım Süresi
+            </th>
+            <th>
+                Sipariş Durumu
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiparisNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrunAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiparisTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SonBakimTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SonrakiBakimTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BakimMasrafi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BakimSuresi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OnaylandiMi)
+            </td>
+            <td>
+                @Html.ActionLink("Sepete Ekle", "AddToBasket", new { id = item.Id })
+            </td>
+        </tr>
+        }
+
+    </table>*@

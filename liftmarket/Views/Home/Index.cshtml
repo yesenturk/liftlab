@@ -1,0 +1,56 @@
+﻿<style>
+    .forLeft {
+        margin-left: 20px;
+    }
+    .forRight {
+        margin-right: 20px;
+    }
+</style>
+
+
+<div class="row">
+    <div class="main">
+        <header class="masthead" style="background-image: url('../../img/tır.jpg')">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                        <div class="site-heading">
+                            <h1>AYYE Lift</h1>
+                            <span class="subheading">Güvenli Lift Satış Sitemize HOŞGELDİNİZ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div style="text-align:center">
+            @{
+                @Html.ActionLink("Yönetici Girişi", "YoneticiGiris", "Home", new { @class = "btn btn-danger forRight" })
+                @Html.ActionLink("Bayi Girişi", "BayiGiris", "Home", new { @class = "btn btn-danger" })
+                @*@Html.ActionLink("Müşteri Girişi", "MusteriGiris", "Home", new { @class = "btn btn-primary forLeft" })*@
+            }
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-preview">
+                        <a>
+                            <h2 class="post-title">
+                                AYYE güvenli Lift Satış Sitemiz 7/24 Hizmetinizdedir.
+                            </h2>
+                        </a>
+                        <p class="post-meta">
+                            Kaliteli Lift Merkezi
+
+                        </p>
+                    </div>
+                    <!-- çizgi şekli -->
+                    <!-- Pager -->
+                </div>
+            </div>
+        </div>
+        <hr />
+
+    </div>
+</div>

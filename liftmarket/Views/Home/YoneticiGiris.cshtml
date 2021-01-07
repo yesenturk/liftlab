@@ -1,0 +1,85 @@
+﻿<style>
+    /*body {
+        margin: 0;
+        padding: 0;
+        background-color: #17a2b8;
+        height: 100vh;
+    }*/
+
+    #login .container #login-row #login-column #login-box {
+        margin: 35px 360px;
+        max-width: 300px;
+        height: 320px;
+        border: 1px solid #9C9C9C;
+        /*background-color: #EAEAEA;*/
+    }
+
+        #login .container #login-row #login-column #login-box #login-form {
+            padding: 20px;
+        }
+
+            #login .container #login-row #login-column #login-box #login-form #register-link {
+                margin-top: -85px;
+            }
+</style>
+
+<header class="masthead" style="background-image: url('../../img/tır.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>AYYE Lift</h1>
+                    <span class="subheading">Güvenli Lift Satış Sitemize HOŞGELDİNİZ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="login">
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" action="/Home/YoneticiLogin" method="post">
+                        <h3 class="text-center text-info">Yönetici Girişi</h3>
+                        <div class="form-group">
+                            <label for="Kullanıcı Adı" class="text-info">Kullanıcı Adı:</label><br>
+                            <input type="text" name="KullaniciAdi" id="BayiKodu" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="Şifre" class="text-info">Şifre:</label><br>
+                            <input type="password" name="Sifre" id="Sifre" class="form-control">
+                        </div>
+                        <div class="form-group" style="text-align: center;">
+                            @*<input type="submit" id="YoneticiGirisi" name="GirisYap" class="btn btn-info btn-md" >*@
+                            <button type="submit" id="YoneticiGirisi" class="btn btn-danger">Giriş Yap</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#YoneticiGirisi").click(function (e) {
+        var BayiKodu = $('#BayiKodu').val();
+        var Sifre = $('#Sifre').val();
+        $.ajax({
+            type: "POST",
+            url: "/Home/YoneticiLogin",
+            data: { "BayiKodu": BayiKodu, "Sifre": Sifre }
+        }).done(function (data) {
+            if (data.result) {
+                alert("İşlem Başarılı!")
+            } else {
+                alert("Hatalı giriş yaptınız!")
+            }
+        }).fail(function () {
+            alert("Server Error!!!")
+        })
+    });
+
+</script>

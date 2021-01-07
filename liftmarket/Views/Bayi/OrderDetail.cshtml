@@ -1,0 +1,81 @@
+﻿@model IEnumerable<liftmarket.Models.SiparisDetay>
+
+@{
+    ViewBag.Title = "Sipariş Detay";
+    string siparisNo = "";
+}
+
+<h2 style="margin:15px; 0px;">
+    @*Sipariş Detay (Sipariş No:  @Html.DisplayFor(modelItem => item.SiparisNo))*@
+</h2>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            Ürün Adı
+        </th>
+        <th>
+            Sipariş Tarihi
+        </th>
+        <th>
+            Adet
+        </th>
+        <th>
+            Son Bakım Tarihi
+        </th>
+        <th>
+            Sonraki Bakım Tarihi
+        </th>
+        <th>
+            Bakım Masrafı
+        </th>
+        <th>
+            Bakım Süresi
+        </th>
+        <th>
+            Sipariş Durumu
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        siparisNo = item.SiparisNo;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrunAdi)
+            </td>
+            <td>
+                @item.SiparisTarihi.ToString("MM/dd/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adet)
+            </td>
+            <td>
+                @item.SonBakimTarihi.ToString("MM/dd/yyyy")
+            </td>
+            <td>
+                @item.SonrakiBakimTarihi.ToString("MM/dd/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BakimMasrafi) ₺
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BakimSuresi) günde bir
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OnayDurumu)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Sepete Ekle", "AddToBasket", new { id = item.Id })
+                </td>*@
+        </tr>
+    }
+    <tr margin:10px 0px;>
+        <h5>
+            Sipariş No:  @Html.DisplayFor(modelItem => siparisNo)
+        </h5>
+    </tr>
+
+</table>

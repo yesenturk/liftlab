@@ -1,0 +1,129 @@
+﻿@using liftmarket.Models
+@model List<SepetUrun>
+@{
+    decimal toplamtutar = 0;
+    foreach (var item in Model)
+    {
+        toplamtutar += item.UrunToplamFiyati;
+    }
+
+}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Ürün</th>
+                        <th>Adet</th>
+                        <th class="text-center">Fiyat</th>
+                        <th class="text-center">Toplam</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="col-sm-6 col-md-5">
+                                <div class="media">
+                                    <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#">@item.UrunAdi</a></h4>
+                                        <h5 class="media-heading"> Ürün Kodu: <a href="#">@item.UrunAdi@item.UrunId</a></h5>
+                                        <span>Stok Durumu: </span><span class="text-success"><strong>Stokta</strong></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="col-sm-2 col-md-1" style="text-align: center">
+                                <input type="number" class="form-control" id="urunAdetInpt" value="@item.Adet">
+                                <input type="hidden" class="form-control" id="urunIdInpt" value="@item.UrunId">
+                            </td>
+                            <td class="col-sm-1 col-md-1 text-center"><strong>@item.UrunFiyati ₺</strong></td>
+                            <td class="col-sm-1 col-md-1 text-center"><strong>@item.UrunToplamFiyati ₺</strong></td>
+                            <td class="col-sm-1 col-md-1">
+                                <button type="button" class="btn btn-danger" id="buttonGuncelle">
+                                    <span class="glyphicon glyphicon-refresh"></span> Güncelle
+                                </button>
+                                <button type="button" class="btn btn-danger" id="buttonSil" style="margin-top:10px;">
+                                    <span class="glyphicon glyphicon-remove"></span> Sil
+                                </button>
+                            </td>
+                            @*<td class="col-sm-1 col-md-1">
+                                    <button type="button" class="btn btn-danger" id="btnSil">
+                                        <span class="glyphicon glyphicon-remove"></span> Sil
+                                    </button>
+                                </td>*@
+                        </tr>
+                    }
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h5>Toplam Tutar</h5></td>
+                        <td class="text-right"><h5><strong>@toplamtutar ₺</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                            @*<button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> Alışverişe Devam Et
+                                </button>*@
+                            @Html.ActionLink("Alışverişe Devam Et", "Index", "Bayi", null, new { @class = "btn btn-default " })
+
+                        </td>
+                        <td>
+                            @*<button type="button" class="btn btn-success">
+                                    Siparişi Tamamla <span class="glyphicon glyphicon-play"></span>
+                                </button>*@
+                            @Html.ActionLink("Siparişi Tamamla", "SiparisVer", "Bayi", null, new { @class = "btn btn-success" })
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('buttonGuncelle').click(function (e) {
+        var _urunAdet = $('#urunAdetInpt').val();
+        var _urunId = $('#urunIdInpt').val();
+        $.ajax({
+            type: "POST",
+            url: "/Bayi/UrunAdetGuncelle",
+            data: { "urunAdet": _urunAdet, "urunId": _urunId }
+        }).done(function (data) {
+            if (data.result) {
+                location.reload(true);
+            } else {
+                location.reload(true);
+            }
+        }).fail(function () {
+            alert("Server Error!!!")
+        })
+    });
+
+    $('#buttonSil').click(function (e) {
+        var _urunId = $('#urunIdInpt').val();
+        $.ajax({
+            type: "POST",
+            url: "/Bayi/SepettenCikarUrunu",
+            data: { "urunId": urunId }
+        }).done(function (data) {
+            if (data.result) {
+                location.reload(true);
+            } else {
+                location.reload(true);
+            }
+        }).fail(function () {
+            alert("Server Error!!!")
+        })
+    });
+</script>

@@ -1,0 +1,151 @@
+﻿<style>
+    .navbar-inverse .navbar-nav li a {
+        color: eee !important;
+    }
+
+    .navbar-inverse .navbar-brand {
+        color: eee !important;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 35px;
+    }
+
+    ortakisim {
+        position: fixed;
+        margin-top: 50px;
+    }
+</style>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="~/Files/css/bootstrap.min.css" rel="stylesheet" />
+
+
+    <link href="~/Files/css/all.min.css" rel="stylesheet" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="~/Files/css/clean-blog.min.css" rel="stylesheet" />
+    @*<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style="background-color:crimson">
+        <div class="container">
+            <div class="navbar-header" style="color:yellow">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <i class="fas fa-bars"></i>
+                </button>
+                @*@Html.ActionLink("LiftMarket", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                <a href="/Home/Index"<p class="navbar-brand">AYYE LİFT</p></a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav">
+                    @if (Session["Musteri"] != null && (Boolean)Session["Musteri"] == true)
+                    {
+                        <li>@Html.ActionLink("Anasayfa", "Index", "Home", new { area = "" }, null)</li>
+                        @*<li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>*@
+                        <li>@Html.ActionLink("Hakkımızda", "Hakkimizda", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Ürünlerimiz", "Urunlerimiz", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("İletişim", "Iletisim", "Home", new { area = "" }, null)</li>
+
+                    }
+                    else if (Session["Yonetici"] != null && (Boolean)Session["Yonetici"] == true)
+                    {
+                        <li>@Html.ActionLink("Ürünler", "Index", "Yonetici", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Siparişler", "Siparisler", "Yonetici", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Ödeme Bilgileri", "Index", "Yonetici", new { area = "" }, null)</li>
+
+                    }
+                    else if (Session["Bayi"] != null && (Boolean)Session["Bayi"] == true)
+                    {
+                        <li>@Html.ActionLink("Ürünler", "Index", "Bayi", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Sepet", "Basket", "Bayi", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Siparisler", "Siparisler", "Bayi", new { area = "" }, null)</li>
+
+                    }
+
+                </ul>
+                @*@Html.ActionLink("Çıkış", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                @if (Session["Yonetici"] != null || Session["Bayi"] != null)
+                {
+                    <a href="@Url.Action("Index", "Home")" style="float:right; color:black; font-size:15px; margin-top:15px;">Çıkış</a>
+                }
+            </div>
+
+        </div>
+    </nav>
+
+
+
+    <div class="container body-content" style="margin-top:50px!important">
+        @RenderBody()
+        <hr />
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/yunussenturkk/?hl=tr">
+                                <img class="img-fluid" width="20" height="20" src="../../img/Facebook-Icon-Dark.jpg" alt="">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/yunussenturkk/?hl=tr">
+                                <img class="img-fluid" width="20" height="20" src="../../img/Instagram.jpg" alt="">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/yunussenturkk/?hl=tr">
+                                <img class="img-fluid" width="20" height="20" src="../../img/youtube.png" alt="">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/yunussenturkk/?hl=tr">
+                                <img class="img-fluid" width="20" height="20" src="../../img/twitter.jpg" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">&copy; 2021</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Files/Script/jquery.min.js"></script>
+    <script src="~/Files/Script/bootstrap.bundle.min.js"></script>
+    <script src="~/Files/Script/clean-blog.min.js"></script>
+</body>
+</html>
